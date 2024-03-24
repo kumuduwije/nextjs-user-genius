@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { MRT_Row } from 'material-react-table';
 import { Customer } from './hooks/useCrud';
 import { UseMutationResult } from '@tanstack/react-query';
+import { Typography } from '@mui/material';
 
 interface AlertDialogProps {
   open: boolean;
@@ -58,15 +59,18 @@ const AlertDialog: React.FC<AlertDialogProps> = ({ open, setOpen, row,useDeleteU
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title"> Are you sure you want to delete {row && row.original ? row.original.firstname : ''} ?</DialogTitle>
+      <DialogTitle sx={{color:"gray", fontSize:18}} id="alert-dialog-title"> Are you sure you want to delete  
+      
+      <Typography  sx={{display:'inline', fontWeight:'bold',color:'#222831',fontSize:18}}> {row && row.original ? row.original.firstname : ''} ? </Typography> 
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText  sx={{color:'#61677A', fontWeight:'normal', fontSize:14}} id="alert-dialog-description">
           This will permanently delete the customer.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleDelete} color="error">
+        <Button sx={{textTransform:"capitalize"}} onClick={handleClose}>Cancel</Button>
+        <Button sx={{textTransform:"capitalize"}}  onClick={handleDelete} color="error">
           Delete
         </Button>
       </DialogActions>

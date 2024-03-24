@@ -37,6 +37,8 @@ import axios from 'axios';
 import AlertDialog from './AlertDialog';
 import { useSession } from 'next-auth/react';
 import { UserContext } from '@/app/contexts/UserContext';
+import Link from 'next/link';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
 
 let apiData: Customer[];
@@ -68,7 +70,7 @@ const [custData, setCustData] = useState<Customer[]>([]);
   //handleCreateFunc=handleCreate;
   handleDeleteFunc=handleDelete;
   handleUpdateFunc = handleUpdate
-  console.log("data from api", apiData.length)
+  //console.log("data from api", apiData.length)
 
 
   useEffect(()=>{
@@ -84,7 +86,7 @@ const [custData, setCustData] = useState<Customer[]>([]);
 
 
     fetchData()
-  })
+  },[authUser?.id])
 
   
 
@@ -356,9 +358,16 @@ const [custData, setCustData] = useState<Customer[]>([]);
   
   return(<> 
    <MaterialReactTable table={table} /> 
+
+
     <AlertDialog row={deleteRow} open={openDeleteModal} setOpen={setOpenDeleteModal} useDeleteUser={useDeleteUser}/> 
 
     
+    <Box sx={{ display:'flex',justifyContent:'right',pt:3, pr:3}}>
+      <Link href="/">
+      <Button startIcon={<ArrowBackOutlinedIcon/>} variant='text' sx={{textTransform:"uppercase"}} > Go to home page</Button>
+      </Link>
+    </Box>
 
 
   </>) ;
